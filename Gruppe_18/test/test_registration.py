@@ -25,4 +25,4 @@ def account():
 
 def test_if_account_can_Register_to_tour(account, tour):
     account.register_to_tour(tour)
-    account.registered_tours = [tour]
+    assert account.registered_tours == [tour]
