@@ -13,8 +13,7 @@ class Account:
         self.registered_tours = []
 
     def register_to_tour(self, tour):
-        if tour.booked < tour.max_travelers and tour not in self.registered_tours:
-            tour.book_tour()
+        if tour.book_tour() and tour not in self.registered_tours:
             self.registered_tours.append(tour)
         else:
             return "you can't register to this tour"
