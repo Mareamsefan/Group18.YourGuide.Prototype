@@ -14,4 +14,7 @@ class Account:
 
     def register_to_tour(self, tour):
         self.registered_tours.append(tour)
-        tour.book_tour()
+        if tour.booked < tour.max_travelers:
+            tour.book_tour()
+        else:
+            return "you can't register to this tour"

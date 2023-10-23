@@ -26,3 +26,6 @@ def account():
 def test_if_account_can_Register_to_tour(account, tour):
     account.register_to_tour(tour)
     assert account.registered_tours == [tour]
+
+def test_if_number_of_booked_changes_after_registration():
+    pass
