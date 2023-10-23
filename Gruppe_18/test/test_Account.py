@@ -28,3 +28,4 @@ def test_account_had_an_successful_registration(account):
 
 def test_user_can_delete_their_account(account):
     assert account.delete_account() == True
+
