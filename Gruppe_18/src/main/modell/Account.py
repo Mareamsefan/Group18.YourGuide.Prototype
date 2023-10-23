@@ -14,3 +14,4 @@ class Account:
 
     def register_to_tour(self, tour):
         self.registered_tours.append(tour)
+        tour.book_tour()

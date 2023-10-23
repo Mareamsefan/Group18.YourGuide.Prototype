@@ -17,3 +17,15 @@ class Tour:
         self.booked = 0
         self.tour_Id = str(uuid.uuid4())
 
+    def book_tour(self):
+        if not self.booked >= self.max_travelers:
+            self.booked += 1
+            return True
+        else:
+            return False
+
+    def get_tour_description(self):
+        return f"This tour will take you to {self.destination} for {self.duration} hours, and is " \
+               f"offered in {self.language}"
+
+
