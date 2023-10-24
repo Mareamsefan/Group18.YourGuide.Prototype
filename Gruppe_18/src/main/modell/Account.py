@@ -12,8 +12,7 @@ class Account:
         self.account_id = str(uuid.uuid4())
         self.registered_tours = []
 
-    def register_to_tour(self, tour):
-        if tour.book_tour() and tour not in self.registered_tours:
-            self.registered_tours.append(tour)
-        else:
-            return "you can't register to this tour"
+    def get_registered_tours(self):
+        return self.registered_tours
+
+

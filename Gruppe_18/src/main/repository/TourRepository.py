@@ -17,3 +17,9 @@ class TourRepository (JSONRepository):
             if min_price <= tour['cost'] <= max_price:
                 filtered_tours.append(tour)
         return filtered_tours
+
+    def register_to_tour(account, tour):
+        if tour.book_tour() and tour not in account.
+            account..append(tour)
+        else:
+            return "you can't register to this tour"
