@@ -1,48 +1,39 @@
-from Gruppe_18.src.main.modell.Account import Account
-from Gruppe_18.src.main.modell.Tour import Tour
-from Gruppe_18.src.main.repository.AccountRepository import AccountRepository
-from Gruppe_18.src.main.repository.JSONRepository import JSONRepository
-from io import StringIO
+import datetime
 
-account = Account("k", "kjwhd73eh", 48282234, "kariMarie@gmail.com")
-account2 = Account("m", "89283447", 4839759793, "koiejewjre@gmail.com")
+from Gruppe_18.src.main.model.models import Tour, Account
+from Gruppe_18.src.main.database.sql_alchemy import get_session
+from Gruppe_18.src.main.repository.TourRepository import TourRepository
 
-account.save_to_json()
-account2.save_to_json()
-# account.delete_account()
+session = get_session()
 
-tour = Tour("Italy",
+tour_repository = TourRepository(session)
+a = Account(
+        "username",
+        "password",
+        12345678,
+        "user_@gmail.com"
+    )
+tour = Tour("Welcome to Dubai",
+        datetime.date(2020, 10, 15),
+        "Dubai",
         4,
         255,
-        "https://www.hdwallpaper.nu/wp-content/uploads/2015/05/colosseum-1436103.jpg",
-        "English",
-        20)
-tour2 = Tour("Italy",
-        4,
-        255,
-        "https://www.hdwallpaper.nu/wp-content/uploads/2015/05/colosseum-1436103.jpg",
-        "English",
-        20)
+        15,"English",
+        "https://www.hdwallpaper.nu/wp-content/uploads/2015/05/colosseum-1436103.jpg")
 
 
-account_repository = AccountRepository()
-account = Account("username", "password", 12345678, "user_@gmail.com")
-account_repository.save_to_json(account)
-io_stream = StringIO()
+new_tour = tour_repository.create_tour(tour)
 
-# Lagre tour-instansen til io_stream ved hjelp av save_to_stream
-tour.save_to_stream(io_stream)
 
-# Les innholdet i io_stream (kan være tomt hvis det er første gang)
-saved_data = io_stream.getvalue()
-print("Saved data:")
-print(saved_data)
-'''
-tour_repo = TourRepository()
-tour_repo.save_to_json(tour2)
-'''
-JSON_repo = JSONRepository()
-print(JSON_repo.to_dict(account))
+#result = tour_repository.book_tour(new_tour)
+#result1 = tour_repository.book_tour(new_tour)
+
+# tour_repository.delete_tour("25129e5f-3599-40be-be6a-07b87ba7762e")
+print(tour_repository.get_tour_description("67eed256-fef7-4314-8900-b543cf5a3ecd"))
+
+
+session.commit()
+
 
 
 
