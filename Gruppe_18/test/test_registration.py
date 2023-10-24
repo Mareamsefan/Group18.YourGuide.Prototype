@@ -12,7 +12,7 @@ def tour():
         255,
         "https://www.hdwallpaper.nu/wp-content/uploads/2015/05/colosseum-1436103.jpg",
         "English",
-        1,
+        2,
     )
 
 
@@ -32,6 +32,7 @@ def test_if_account_can_register_to_tour_that_is_not_fully_booked(account, tour)
 
 
 def test_if_account_can_not_register_to_fully_booked_tour(account, tour):
+    tour.max_travelers = 1
     account.register_to_tour(tour)
     another_account = Account("username", "password", 2435, "user_@gmail.com")
     assert another_account.register_to_tour(tour) == "you can't register to this tour"
