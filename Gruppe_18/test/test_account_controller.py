@@ -175,7 +175,7 @@ def test_if_user_can_register_a_tour(app, user, tour, account_controller, accoun
         assert account_repository.is_account_registered_to_tour(tour.id, user.id) is True
 
 
-#
+# Testing feature 1.26
 def test_tour_registration_with_unauthenticated_user_sends_user_back_home_with_flash_message(app, user,
                                                                                              account_controller
                                                                                              , tour):
@@ -207,7 +207,8 @@ def test_user_can_cancel_a_tour_registration(app, user, tour, account_controller
         assert result == render_template('canceled_tour.html', tour=tour)
         assert account_repository.is_account_registered_to_tour(tour.id, user.id) is False
 
-# Testing feature
+
+# Testing feature 1.26
 def test_unauthenticated_user_try_to_cancel_a_tour_gets_sent_to_login_with_flash_message(app, user, tour,
                                                                                          account_controller):
     with app.test_request_context(method='POST', data={'tour_id': f'{tour.id}',
