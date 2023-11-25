@@ -130,6 +130,7 @@ def test_user_cannot_register_if_one_field_is_missing_data(app, user, account_co
         assert result == render_template('User_register.html')
         assert account_repository.get_user_by_username('') is None
 
+
 # Testing feature 1.1.6
 def test_if_user_can_login_with_saved_account_after_registration(app, user, account_controller, account_repository):
     account_repository.create_account(user)
@@ -206,7 +207,7 @@ def test_user_can_cancel_a_tour_registration(app, user, tour, account_controller
         assert result == render_template('canceled_tour.html', tour=tour)
         assert account_repository.is_account_registered_to_tour(tour.id, user.id) is False
 
-
+# Testing feature
 def test_unauthenticated_user_try_to_cancel_a_tour_gets_sent_to_login_with_flash_message(app, user, tour,
                                                                                          account_controller):
     with app.test_request_context(method='POST', data={'tour_id': f'{tour.id}',
@@ -243,6 +244,7 @@ def test_authenticated_admin_can_delete_users(app, user, admin, account_controll
         assert account_repository.get_one_specific_account(user.id) is False
 
 
+# Testing feature 1.3.2
 def test_unauthenticated_admin_cannot_delete_users_and_gets_sent_to_login_and_gets_flashed_message(app, user, admin,
                                                                                                    account_controller):
     with app.test_request_context(method='POST', data={'user_id': f'{user.id}'}):
@@ -283,6 +285,7 @@ def test_authenticated_admin_can_update_user_usertype_to_guide(app, admin, user,
         assert user_from_db.usertype == 'guide'
 
 
+# Testing feature 1.3.5
 def test_authenticated_admin_can_view_all_users(app, admin, user, guide, account_controller, account_repository):
     account_repository.create_account(admin)
     account_repository.create_account(user)
@@ -295,6 +298,7 @@ def test_authenticated_admin_can_view_all_users(app, admin, user, guide, account
         assert users is not None
 
 
+# Testing feature 1.3.7
 def test_authenticated_admin_can_hide_all_users(app, admin, account_controller, account_repository):
     with app.test_request_context():
         login_user(admin, remember=True)
@@ -302,6 +306,7 @@ def test_authenticated_admin_can_hide_all_users(app, admin, account_controller, 
         assert result == render_template('homepage_admin.html', show_all_users=False)
 
 
+# Testing feature 1.2.1 and 1.1.5
 def test_authenticated_user_can_view_their_profile_with_their_correct_user_information(app, user,
                                                                                        account_controller,
                                                                                        account_repository):
